@@ -45,12 +45,12 @@ require_once './views/templates/header.php';
 
 switch ($route) {
     case 'register':
-        require_once './views/register.php';
+        require_once './views/register.html';
 
         break;
 
     case 'login':
-        require_once './views/login.php';
+        require_once './views/login.html';
 
         break;
 
@@ -71,7 +71,7 @@ switch ($route) {
         break;
 
     default:
-        require_once './views/main.php';
+        require_once './views/main.html';
 
         break;
 }
