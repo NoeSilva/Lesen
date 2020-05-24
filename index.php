@@ -1,7 +1,7 @@
 <?php
-require_once './controllers/Controller.php';
-
 session_start();
+
+require_once './controllers/Controller.php';
 
 $route = '';
 
@@ -9,7 +9,7 @@ if (isset($_GET['r'])) {
     $route = $_GET['r'];
 }
 
-if (isset($_COOKIE['auth']) && $_COOKIE['auth'] == 1) {
+if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
     $links = array(
         array(
             'name' => 'Inicio',

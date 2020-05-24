@@ -29,12 +29,12 @@ class AuthController
         $result = $user->userLogin();
 
         if ($result !== FALSE) {
-            setcookie('auth', 1, time() + (86400 * 30), "/");
-            setcookie('user', $result['id'], time() + (86400 * 30), "/");
+
+            $_SESSION['auth'] = 1;
+            $_SESSION['user'] = $result;
 
             header('Location: index.php?r=panel');
         } else {
-            setcookie('auth', 0, time() + (86400 * 30), "/");
 
             header('Location: index.php?r=login');
         }

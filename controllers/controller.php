@@ -14,7 +14,7 @@ class Controller {
     }
 
     public function panel(){
-        if (isset($_COOKIE['auth']) && $_COOKIE['auth'] == 1) {
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
             require_once './views/panel.php';
         } else {
             header('Location: index.php?r=login');
@@ -24,7 +24,8 @@ class Controller {
     }
 
     public function logout(){
-        setcookie('auth', 0, time() + (86400 * 30), "/");
+        unset($_SESSION['auth']);
+        unset($_SESSION['user']);
 
         header('Location: index.php?r=login');
     }
