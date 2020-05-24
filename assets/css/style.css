@@ -1,0 +1,43 @@
+.bg-success {
+    background-color: rgb(53, 212, 122) !important;
+}
+
+.bg-primary {
+    background-color: #08E9FD !important;
+}
+
+.bg-secondary {
+    background-color: #808481 !important;
+}
+
+.bg-danger {
+    background-color: #F63C16 !important;
+}
+
+.bg-warning {
+    background-color: #F3E30C !important;
+}
+
+.bg-info {
+    background-color: #1845EA !important;
+}
+
+.bg-grey {
+    background-color: #313131 !important;
+}
+
+.bg-black {
+    background-color: rgb(20, 20, 20) !important;
+}
+
+.redondito {
+    border-radius: 25px;
+}
+
+.redondete {
+    border-radius: 15px;
+}
+
+.borde-blanco {
+    border-color: white;
+}
