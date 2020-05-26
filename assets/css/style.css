@@ -11,7 +11,7 @@
 }
 
 .bg-danger {
-    background-color: #F63C16 !important;
+    background-color: #d90429 !important;
 }
 
 .bg-warning {
@@ -23,7 +23,7 @@
 }
 
 .bg-grey {
-    background-color: #313131 !important;
+    background-color: #ACB8C6 !important;
 }
 
 .bg-black {
@@ -34,10 +34,24 @@
     border-radius: 25px;
 }
 
+.redondito-derecha {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
 .redondete {
     border-radius: 15px;
 }
 
+.redondo {
+    border-radius: 5px;
+}
+
 .borde-blanco {
     border-color: white;
+}
+
+.imagen-ajustada {
+    max-width: 200px;
+    max-height: 350px;
 }

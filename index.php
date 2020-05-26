@@ -13,30 +13,37 @@ if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
     $links = array(
         array(
             'name' => 'Inicio',
-            'url' => 'main'
+            'url' => 'main',
+            'icon' => 'fas fa-home'
+
         ),
         array(
             'name' => 'Panel',
-            'url' => 'panel'
+            'url' => 'panel',
+            'icon' => 'fas fa-user' 
         ),
         array(
             'name' => 'Cerrar sesión',
-            'url' => 'logout'
+            'url' => 'logout',
+            'icon' => 'fas fa-sign-out-alt' 
         ),
     );
 } else {
     $links = array(
         array(
             'name' => 'Inicio',
-            'url' => 'main'
+            'url' => 'main',
+            'icon' => 'fas fa-home'
         ),
         array(
             'name' => 'Registro',
-            'url' => 'register'
+            'url' => 'register',
+            'icon' => 'fas fa-angle-double-right' 
         ),
         array(
             'name' => 'Inicia sesión',
-            'url' => 'login'
+            'url' => 'login',
+            'icon' => 'fas fa-sign-in-alt' 
         ),
     );
 }

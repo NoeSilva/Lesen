@@ -10,7 +10,11 @@ class Controller {
     }
 
     public function main(){
-        require_once './views/main.html';
+        require_once './views/main.php';
+    }
+
+    public function books(){
+        require_once './views/books.php';
     }
 
     public function panel(){
