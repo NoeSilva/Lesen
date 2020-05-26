@@ -13,6 +13,10 @@ class Controller {
         require_once './views/main.html';
     }
 
+    public function fake(){
+        require_once './views/fake.html';
+    }
+
     public function panel(){
         if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
             require_once './views/panel.php';
