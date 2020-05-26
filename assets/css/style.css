@@ -34,11 +34,6 @@
     border-radius: 25px;
 }
 
-.redondito-arriba {
-    border-top-left-radius: 25px !important;
-    border-top-right-radius: 25px !important;
-}
-
 .redondete {
     border-radius: 15px;
 }

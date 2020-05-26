@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avengers</title>
-    <link rel="icon" type="image/png" href="./assets/img/avengerslogo.png" />
+    <title>AN</title>
+    <link rel="icon" type="image/png" href="./assets/img/logo.png" />
 
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-info">
         <div class="container">
             <a class="navbar-brand" href="index.php">
-                <img src="./assets/img/avengerslogo.png" width="35" height="35" alt="">   
+                <img src="./assets/img/logo.png" width="40" height="35" alt="">   
             </a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId">
                 <span class="navbar-toggler-icon"></span>
