@@ -1,5 +1,5 @@
 <?php
-$categories = array('Terror','Suspense','Fantástico','Aventuras','Policiaco','Histórico','Poesía','Prosa poética','Drama','Romance','Fábulas','Infantil');
+$categories = array('Terror','Suspense','Fantástico','Aventuras','Policiaco','Histórico','Poesía','Prosa poética','Drama','Romance','Fábula','Infantil');
 ?>
 
 <div class="container">

@@ -17,16 +17,16 @@ class Controller {
         require_once './views/books.php';
     }
 
+    //Comprobamos si el usuario está logueado, de no ser así redirigimos a login
     public function panel(){
-        if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
-            require_once './views/panel.php';
-        } else {
+        if (!isset($_SESSION['auth']) || $_SESSION['auth'] != 1) {
             header('Location: index.php?r=login');
         }
         
         require_once './views/panel.php';
     }
 
+    //Vaciamos las variables $auth y $user, redirigimos a login
     public function logout(){
         unset($_SESSION['auth']);
         unset($_SESSION['user']);

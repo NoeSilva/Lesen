@@ -3,7 +3,8 @@ session_start();
 
 require_once './controllers/BooksController.php';
 
-echo $_POST['gendre'];
+echo $_POST['title'];
+echo '¡El libro ha sido añadido con éxito!';
 
 $action = '';
 

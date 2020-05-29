@@ -1,14 +1,25 @@
 <?php
+/*
+Abrimos la sesión para usar variables de sesión
+Variables que conservan el valor hasta que se cierre la pestaña
+*/
 session_start();
 
+/*
+Requerimos el controlador
+Contiene las funciones que muestran las páginas
+*/
 require_once './controllers/Controller.php';
 
+//Inicializamos una variable
 $route = '';
 
+//Cogemos la ruta de URL y la metemos en la variable $route
 if (isset($_GET['r'])) {
     $route = $_GET['r'];
 }
 
+//El usuario esta logueado
 if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
     $links = array(
         array(
@@ -28,7 +39,9 @@ if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
             'icon' => 'fas fa-sign-out-alt' 
         ),
     );
-} else {
+} 
+//El usuario NO está logueado
+else {
     $links = array(
         array(
             'name' => 'Inicio',
@@ -48,14 +61,20 @@ if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
     );
 }
 
+//Requerimos el header y le pasamos el array de links para generar el menú
 require_once './views/templates/header.php';
 
+//Asignamos a la variable $controller el controlador (contenedor de las páginas)
 $controller = new Controller();
 
+//Si hay una función que se llame igual que el valor de $route, llamamos a esa función
 if(method_exists($controller, $route)){
-    $controller->$route();
-}else {
+    $controller->$route(); //$controller->login();
+}
+//En caso de no ser así, ejecutamos la función main
+else {
     $controller->main();
 }
 
+//Requerimos el footer
 require_once './views/templates/footer.html';
