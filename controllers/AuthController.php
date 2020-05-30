@@ -10,8 +10,10 @@ class AuthController
     Asignamos valores a la clase User
     Devolvemos la clase abierta
     */
-    private function insertData($email, $pass) {
+    private function insertData($name, $email, $pass) {
         $user = new User();
+
+        $user->name = $name;
         $user->email = $email;
         $user->pass = $pass;
     
@@ -25,7 +27,7 @@ class AuthController
     */
     public function register()
     {
-        $user = $this->insertData($_POST['email'], hash('sha256', $_POST['password']));
+        $user = $this->insertData($_POST['name'], $_POST['email'], hash('sha256', $_POST['password']));
 
         if ($user->createUser() === TRUE) {
             header('Location: index.php?r=login');
@@ -43,7 +45,7 @@ class AuthController
     */
     public function login()
     {
-        $user = $this->insertData($_POST['email'], hash('sha256', $_POST['password']));
+        $user = $this->insertData(NULL, $_POST['email'], hash('sha256', $_POST['password']));
 
         $result = $user->userLogin();
 

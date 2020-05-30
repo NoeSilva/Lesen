@@ -3,6 +3,7 @@ require_once './config/db.php';
 
 class User
 {
+    public $name;
     public $email;
     public $pass;
 
@@ -15,7 +16,7 @@ class User
             return true;
         }
         
-        $sql = "INSERT INTO usuarios VALUES(NULL, '{$this->email}', '{$this->pass}');";
+        $sql = "INSERT INTO usuarios VALUES(NULL, '{$this->name}', '{$this->email}', '{$this->pass}');";
 
 		if($this->db->query($sql) === TRUE){
 			return true;

@@ -1,4 +1,6 @@
 <?php
+require_once './class/Book.php';
+
 class Controller {
 
     public function register(){
@@ -9,12 +11,11 @@ class Controller {
         require_once './views/login.html';
     }
 
-    public function main(){
-        require_once './views/main.php';
-    }
+    public function main(){ 
+        $book = new Book();
+        $books = $book->getBooks();
 
-    public function books(){
-        require_once './views/books.php';
+        require_once './views/main.php';
     }
 
     //Comprobamos si el usuario está logueado, de no ser así redirigimos a login
@@ -24,6 +25,9 @@ class Controller {
         }
         
         require_once './views/panel.php';
+
+        unset($_SESSION['class']);
+        unset($_SESSION['message']);
     }
 
     //Vaciamos las variables $auth y $user, redirigimos a login
