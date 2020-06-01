@@ -35,13 +35,14 @@ $categories = array('Terror', 'Suspense', 'Fantástico', 'Aventuras', 'Policiaco
                 </div>
                 <div>
                     <label for="author">Precio</label>
-                    <input type="number" class="form-control redondo" name="price" step="0.1">
+                    <input type="number" class="form-control redondo" name="price" step="0.1" min="0" placeholder="Introduce el precio...">
                 </div>
 
                 <button class="btn btn-dark btn-block redondo mt-4" type="submit">Añadir</button>
             </form>
+            <?php if (isset($_SESSION['bookId'])) { ?>
+                <a type="button" class="btn btn-dark redondo mt-4" href="index.php?book=show_book&id=<?=$_SESSION['bookId']?>">Ver libro</a>
+            <?php } ?>
         </div>
     </div>
-
-    <?php echo $_SESSION['user']['email']; ?>
 </div>

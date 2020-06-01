@@ -43,7 +43,7 @@ class User
         
         $result = $this->db->query($sql);
 
-        if ($result->num_rows > 0) {
+        if ($result->num_rows === 1) {
             return $result->fetch_assoc();
         }
         

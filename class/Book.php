@@ -42,9 +42,17 @@ class Book
         $sql = "INSERT INTO books VALUES(NULL, '{$this->title}', '{$this->author}','{$this->gendre}','{$this->image}','{$this->price}');";
 
 		if($this->db->query($sql) === TRUE){
-			return true;
+			return $this->getLastBook();
         }
 
         return false;
+    }
+
+    private function getLastBook() {
+        $sql = "SELECT id FROM books ORDER BY id DESC LIMIT 1";
+
+        $result = $this->db->query($sql);
+
+        return $result->fetch_assoc();
     }
 }

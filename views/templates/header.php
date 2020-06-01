@@ -28,7 +28,7 @@
                         if ($route == $link['url']) {
                             print 
                             "<li class='nav-item active'>
-                                <a class='nav-link' href='index.php?r={$link['url']}'>
+                                <a class='nav-link' href='index.php?{$link['url']}'>
                                     <i class='{$link['icon']} mr-1'></i>
                                     {$link['name']}
                                 </a>
@@ -36,7 +36,7 @@
                         } else {
                             print 
                             "<li class='nav-item'>
-                                <a class='nav-link' href='index.php?r={$link['url']}'>
+                                <a class='nav-link' href='index.php?{$link['url']}'>
                                     <i class='{$link['icon']} mr-1'></i>
                                     {$link['name']}
                                 </a>

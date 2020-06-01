@@ -1,98 +1,113 @@
 <?php
-/*
-Abrimos la sesión para usar variables de sesión
-Variables que conservan el valor hasta que se cierre la pestaña
-*/
 session_start();
 
-//Asignamos a la variable $controller el controlador (contenedor de las páginas)
+//El usuario esta logueado
+if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+    $links = array(
+        array('name' => 'Inicio', 'url' => 'r=main', 'icon' => 'fas fa-home'),
+        array('name' => 'Panel', 'url' => 'auth=panel', 'icon' => 'fas fa-user'),
+        array('name' => 'Cerrar sesión', 'url' => 'r=logout', 'icon' => 'fas fa-sign-out-alt'),
+    );
+}
+//El usuario NO está logueado
+else {
+    $links = array(
+        array('name' => 'Inicio', 'url' => 'r=main', 'icon' => 'fas fa-home'),
+        array('name' => 'Registro', 'url' => 'auth=register', 'icon' => 'fas fa-angle-double-right'),
+        array('name' => 'Inicia sesión', 'url' => 'auth=login', 'icon' => 'fas fa-sign-in-alt'),
+    );
+}
+
 if (isset($_GET['r'])) {
-    //Cogemos la ruta de URL y la metemos en la variable $route
-    $route = $_GET['r'];
-
-    //El usuario esta logueado
-    if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
-        $links = array(
-            array(
-                'name' => 'Inicio',
-                'url' => 'main',
-                'icon' => 'fas fa-home'
-            ),
-            array(
-                'name' => 'Panel',
-                'url' => 'panel',
-                'icon' => 'fas fa-user' 
-            ),
-            array(
-                'name' => 'Cerrar sesión',
-                'url' => 'logout',
-                'icon' => 'fas fa-sign-out-alt' 
-            ),
-        );
-    } 
-    //El usuario NO está logueado
-    else {
-        $links = array(
-            array(
-                'name' => 'Inicio',
-                'url' => 'main',
-                'icon' => 'fas fa-home'
-            ),
-            array(
-                'name' => 'Registro',
-                'url' => 'register',
-                'icon' => 'fas fa-angle-double-right' 
-            ),
-            array(
-                'name' => 'Inicia sesión',
-                'url' => 'login',
-                'icon' => 'fas fa-sign-in-alt' 
-            ),
-        );
-    }
-
-    /*
-    Requerimos el controlador
-    Contiene las funciones que muestran las páginas
-    */
     require_once './controllers/Controller.php';
-
-    //Requerimos el header y le pasamos el array de links para generar el menú
-    require_once './views/templates/header.php';
 
     $controller = new Controller();
 
-    controller($controller, $route);
+    $route = $_GET['r'];
 
-    //Requerimos el footer
-    require_once './views/templates/footer.html';
+    switch ($route) {
+        case 'main':
+            require_once './views/templates/header.php';
+            $controller->main();
+            require_once './views/templates/footer.html';
 
-} else if(isset($_GET['book'])) {
-    require_once './controllers/BooksController.php';
+            break;
 
-    $controller = new BooksController();
+        case 'logout':
+            $controller->logout();
+            break;
+    }
+} else if (isset($_GET['book'])) {
+    require_once './controllers/BookController.php';
 
-    $function = $_GET['book'];
+    $controller = new BookController();
 
-    controller($controller, $function);
+    $route = $_GET['book'];
 
-} else if(isset($_GET['auth'])) {
+    switch ($route) {
+        case 'show_book':
+            require_once './views/templates/header.php';
+            $controller->showBook();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'create_book':
+            require_once './views/templates/header.php';
+            $controller->createBook();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'insertBook':
+            $controller->insertBook();
+            break;
+
+        case 'updateBook':
+            $controller->updateBook();
+            break;
+
+        case 'removeBook':
+            $controller->removeBook();
+            break;
+    }
+} else if (isset($_GET['auth'])) {
     require_once './controllers/AuthController.php';
 
     $controller = new AuthController();
 
-    $function = $_GET['auth'];
+    $route = $_GET['auth'];
 
-    controller($controller, $function);
-}
+    switch ($route) {
+        case 'register':
+            require_once './views/templates/header.php';
+            $controller->register();
+            require_once './views/templates/footer.html';
 
-else {
-    header('Location: index.php?r=main');
-}
+            break;
 
-//Si hay una función que se llame igual que el valor de $function, llamamos a esa función
-function controller($controller, $function) {
-    if(method_exists($controller, $function)){
-        $controller->$function(); //$controller->login();
+        case 'login':
+            require_once './views/templates/header.php';
+            $controller->login();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'panel':
+            require_once './views/templates/header.php';
+            $controller->panel();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'registerUser':
+            $controller->registerUser();
+            break;
+
+        case 'loginUser':
+            $controller->loginUser();
+            break;
     }
+} else {
+    header('Location: index.php?r=main');
 }
