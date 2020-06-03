@@ -12,14 +12,14 @@ $categories = array('Terror', 'Suspense', 'Fantástico', 'Aventuras', 'Policiaco
                 </div>
             <?php } ?>
 
-            <form action="index.php?book=insertBook" method="POST" enctype="multipart/form-data">
+            <form action="index.php?book=<?= $type ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Título del libro</label>
-                    <input type="text" class="form-control redondo" id="title" name="title" placeholder="Introduce el título...">
+                    <input type="text" class="form-control redondo" id="title" name="title" placeholder="Introduce el título..." value="<?= $book['title'] ?>">
                 </div>
                 <div class="form-group">
                     <label for="author">Autor/a</label>
-                    <input type="text" class="form-control redondo" id="author" name="author" placeholder="Introduce el autor...">
+                    <input type="text" class="form-control redondo" id="author" name="author" placeholder="Introduce el autor..." value="<?= $book['author'] ?>">
                 </div>
                 <div class="form-group mb-4">
                     <label for="gendre">Género</label>
@@ -35,11 +35,18 @@ $categories = array('Terror', 'Suspense', 'Fantástico', 'Aventuras', 'Policiaco
                 </div>
                 <div>
                     <label for="author">Precio</label>
-                    <input type="number" class="form-control redondo" name="price" step="0.1" min="0" placeholder="Introduce el precio...">
+                    <input type="number" class="form-control redondo" name="price" step="0.1" min="0" placeholder="Introduce el precio..." value="<?= $book['price'] ?>">
                 </div>
 
-                <button class="btn btn-dark btn-block redondo mt-4" type="submit">Añadir</button>
+                <input type="hidden" name="id" value="<?= $book['id'] ?>">
+            
+                <?php if ($type == 'createBook') { ?>
+                    <button class="btn btn-dark btn-block redondo mt-4" type="submit">Añadir</button>
+                <?php  } else { ?>
+                    <button class="btn btn-dark btn-block redondo mt-4" type="submit">Actualizar</button>
+                <?php  } ?>
             </form>
+
             <?php if (isset($_SESSION['bookId'])) { ?>
                 <a type="button" class="btn btn-dark redondo mt-4" href="index.php?book=show_book&id=<?=$_SESSION['bookId']?>">Ver libro</a>
             <?php } ?>

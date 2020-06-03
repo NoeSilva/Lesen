@@ -9,9 +9,21 @@ class BookController
     /*                                         PAGINAS                                          */
     /********************************************************************************************/
     
-    public function createBook()
+    public function create_book()
     {
+        // Comprueba si el usuario está logueado
         AuthController::checkAuth();
+
+        $type = 'createBook';
+
+        $book = array(
+            'id' => 0 ,
+            'title' => '',
+            'author' => '',
+            'gendre' => '',
+            'image' => '',
+            'price' => 0,
+        );
 
         require_once './views/book/create_book.php';
  
@@ -20,7 +32,7 @@ class BookController
         unset($_SESSION['bookId']);
     }
 
-    public function showBook(){
+    public function show_book(){
         $book = new Book();
         $result = $book->getBook($_GET['id']);
 
@@ -31,6 +43,40 @@ class BookController
         }
 
         require_once './views/book/show_book.php';
+    }
+
+    public function show_books(){ 
+        AuthController::checkAuth();
+
+        $book = new Book();
+        $books = $book->getBooks();
+
+        require_once './views/book/show_books.php';
+
+        unset($_SESSION['class']);
+        unset($_SESSION['message']);
+    }
+
+    public function update_book()
+    {
+        AuthController::checkAuth();
+
+        $book = new Book();
+        $result = $book->getBook($_GET['id']);
+
+        if ($result !== FALSE) {
+            $type = 'updateBook';
+
+            $book = $result;
+        } else {
+            header('Location:index.php?r=main');
+        }
+
+        require_once './views/book/create_book.php';
+ 
+        unset($_SESSION['class']);
+        unset($_SESSION['message']);
+        unset($_SESSION['bookId']);
     }
 
     /********************************************************************************************/
@@ -53,7 +99,7 @@ class BookController
     }
 
     // Insertar libro a la BD
-    public function insertBook()
+    public function createBook()
     {
         $book = $this->insertData(NULL, $_POST['title'], $_POST['author'], $_POST['gendre'], $_FILES["image"]['name'], $_POST['price']);
  
@@ -73,9 +119,34 @@ class BookController
 
     public function updateBook()
     {
+        $book = $this->insertData($_POST['id'], $_POST['title'], $_POST['author'], $_POST['gendre'], $_FILES["image"]['name'], $_POST['price']);
+ 
+        $result = $book->updateBook();
+
+        if ($result !== FALSE) {
+            $_SESSION['class'] = 'alert-success';
+            $_SESSION['message'] = 'El libro se ha actualizado';
+        } else {
+            $_SESSION['class'] = 'alert-danger';
+            $_SESSION['message'] = 'El libro no se ha actualizado';
+        }
+
+        header('Location: index.php?book=update_book&id='. $_POST['id']);
     }
 
     public function removeBook()
     {
+        $book = new Book();
+        $result = $book->removeBook($_GET['id']);
+
+        if ($result === TRUE) {
+            $_SESSION['class'] = 'alert-success';
+            $_SESSION['message'] = 'El libro se ha eliminado';
+        } else {
+            $_SESSION['class'] = 'alert-danger';
+            $_SESSION['message'] = 'El libro no se ha eliminado';
+        }
+
+        header('Location: index.php?book=show_books');
     }
 }

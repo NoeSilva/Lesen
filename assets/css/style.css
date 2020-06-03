@@ -56,6 +56,11 @@
     max-height: 350px;
 }
 
+.imagen-panel {
+    max-width: 350px;
+    max-height: 350px;
+}
+
 a:link {
     text-decoration: none;
     color: #000;

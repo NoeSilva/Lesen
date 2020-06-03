@@ -47,20 +47,34 @@ if (isset($_GET['r'])) {
     switch ($route) {
         case 'show_book':
             require_once './views/templates/header.php';
-            $controller->showBook();
+            $controller->show_book();
             require_once './views/templates/footer.html';
 
             break;
 
         case 'create_book':
             require_once './views/templates/header.php';
-            $controller->createBook();
+            $controller->create_book();
             require_once './views/templates/footer.html';
 
             break;
 
-        case 'insertBook':
-            $controller->insertBook();
+        case 'show_books':
+            require_once './views/templates/header.php';
+            $controller->show_books();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'update_book':
+            require_once './views/templates/header.php';
+            $controller->update_book();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'createBook':
+            $controller->createBook();
             break;
 
         case 'updateBook':
