@@ -46,6 +46,7 @@ class BookController
     }
 
     public function show_books(){ 
+       
         AuthController::checkAuth();
 
         $book = new Book();

@@ -16,7 +16,7 @@ class User
             return true;
         }
         
-        $sql = "INSERT INTO usuarios VALUES(NULL, '{$this->name}', '{$this->email}', '{$this->pass}');";
+        $sql = "INSERT INTO users VALUES(NULL, '{$this->name}', '{$this->email}', '{$this->pass}');";
 
 		if($this->db->query($sql) === TRUE){
 			return true;
@@ -27,7 +27,7 @@ class User
 
     //Comprobar si existe el usuario
     private function userExists() {
-        $sql = "SELECT * FROM usuarios WHERE email='{$this->email}'";
+        $sql = "SELECT * FROM users WHERE email='{$this->email}'";
 
         $result = $this->db->query($sql);
 
@@ -39,7 +39,7 @@ class User
     }
 
     public function userLogin() {
-        $sql = "SELECT * FROM usuarios WHERE email='{$this->email}' && pass='{$this->pass}'";
+        $sql = "SELECT * FROM users WHERE email='{$this->email}' && pass='{$this->pass}'";
         
         $result = $this->db->query($sql);
 

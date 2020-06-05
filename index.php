@@ -122,6 +122,36 @@ if (isset($_GET['r'])) {
             $controller->loginUser();
             break;
     }
+} else if (isset($_GET['category'])) {
+    require_once './controllers/CategoryController.php';
+
+    $controller = new CategoryController();
+
+    $route = $_GET['category'];
+
+    switch ($route) {
+        case 'create_category':
+            require_once './views/templates/header.php';
+            $controller->create_category();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'show_categories':
+            require_once './views/templates/header.php';
+            $controller->show_categories();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'createCategory':
+            $controller->createCategory();
+            break;
+
+        case 'removeCategory':
+            $controller->removeCategory();
+            break;
+    }
 } else {
     header('Location: index.php?r=main');
 }
