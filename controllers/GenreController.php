@@ -1,32 +1,32 @@
 <?php
-require_once './class/Category.php';
+require_once './class/Genre.php';
 
 require_once './controllers/AuthController.php';
 
-class CategoryController {
+class GenreController {
 
     /********************************************************************************************/
     /*                                         PAGINAS                                          */
     /********************************************************************************************/
 
-    public function create_category()
+    public function create_genre()
     {
         AuthController::checkAuth();
 
-        require_once './views/category/create_category.php';
+        require_once './views/genre/create_genre.php';
  
         unset($_SESSION['class']);
         unset($_SESSION['message']);
     }
 
-    public function show_categories()
+    public function show_genres()
     {
         AuthController::checkAuth();
 
-        $category = new Category();
-        $categories = $category->getCategories();
-
-        require_once './views/category/show_categories.php';
+        $genre = new Genre();
+        $genres = $genre->getGenres();
+        
+        require_once './views/genre/show_genres.php';
 
         unset($_SESSION['class']);
         unset($_SESSION['message']);
@@ -36,39 +36,39 @@ class CategoryController {
     /*                                       FUNCIONES                                          */
     /********************************************************************************************/
 
-    public function createCategory()
+    public function createGenre()
     {
-        $category = new Category();
+        $genre = new Genre();
 
-        $category->name = $_POST['name'];
+        $genre->name = $_POST['name'];
  
-        $result = $category->createCategory();
+        $result = $genre->createGenre();
 
         if ($result === TRUE) {
             $_SESSION['class'] = 'alert-success';
-            $_SESSION['message'] = 'La categoría se ha creado';
+            $_SESSION['message'] = 'El género se ha creado';
         } else {
             $_SESSION['class'] = 'alert-danger';
-            $_SESSION['message'] = 'La categoría no se ha creado';
+            $_SESSION['message'] = 'El género no se ha creado';
         }
 
-        header('Location: index.php?category=create_category');
+        header('Location: index.php?genre=create_genre');
     }
 
-    public function removeCategory()
+    public function removeGenre()
     {
-        $category = new Category();
-        $result = $category->removeCategory($_GET['id']);
+        $genre = new Genre();
+        $result = $genre->removeGenre($_GET['id']);
 
         if ($result === TRUE) {
             $_SESSION['class'] = 'alert-success';
-            $_SESSION['message'] = 'La categoría se ha eliminado';
+            $_SESSION['message'] = 'El género se ha eliminado';
         } else {
             $_SESSION['class'] = 'alert-danger';
-            $_SESSION['message'] = 'La categoría no se ha eliminado';
+            $_SESSION['message'] = 'El género no se ha eliminado';
         }
 
-        header('Location: index.php?category=show_categories');
+        header('Location: index.php?genre=show_genres');
     }
    
 

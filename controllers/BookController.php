@@ -1,5 +1,6 @@
 <?php
 require_once './class/Book.php';
+require_once './class/Genre.php';
 
 require_once './controllers/AuthController.php';
 
@@ -24,6 +25,16 @@ class BookController
             'image' => '',
             'price' => 0,
         );
+
+        $genre = new Genre();
+        $result = $genre->getGenres();
+
+        if ($result !== FALSE) {
+            $genres = $result;
+        }
+        else {
+            $genres = [];
+        }
 
         require_once './views/book/create_book.php';
  

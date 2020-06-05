@@ -1,6 +1,6 @@
 <?php
 
-class Category 
+class Genre 
 {
     public $id;
     public $user_id;
@@ -10,8 +10,8 @@ class Category
         $this->db = Database::connect();
     }
 
-    public function getCategories() {
-        $sql = "SELECT * FROM categories";
+    public function getGenres() {
+        $sql = "SELECT * FROM genres";
 
         $result = $this->db->query($sql);
 
@@ -22,8 +22,8 @@ class Category
         return false;
     }
 
-    public function createCategory() {
-        $sql = "INSERT INTO categories VALUES(NULL, '{$_SESSION['user']['id']}', '{$this->name}')";
+    public function createGenre() {
+        $sql = "INSERT INTO genres VALUES(NULL, '{$_SESSION['user']['id']}', '{$this->name}')";
 
 		if($this->db->query($sql) === TRUE){
 			return true;
@@ -32,12 +32,12 @@ class Category
         return false;
     }
 
-    public function removeCategory($id) {
-        $sql = "SELECT id FROM categories WHERE id=$id && user_id={$_SESSION['user']['id']}";
+    public function removeGenre($id) {
+        $sql = "SELECT id FROM genres WHERE id=$id && user_id={$_SESSION['user']['id']}";
 
         if ($this->db->query($sql)->num_rows == 1) {
   
-            $sql = "DELETE FROM categories WHERE id=$id && user_id={$_SESSION['user']['id']}";
+            $sql = "DELETE FROM genres WHERE id=$id && user_id={$_SESSION['user']['id']}";
 
             if($this->db->query($sql) === TRUE){
                 return true;

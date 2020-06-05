@@ -1,7 +1,3 @@
-<?php
-$categories = array('Terror', 'Suspense', 'Fantástico', 'Aventuras', 'Policiaco', 'Histórico', 'Poesía', 'Prosa poética', 'Drama', 'Romance', 'Fábula', 'Infantil');
-?>
-
 <div class="container">
     <div class="card redondito mt-4">
         <div class="card-body">
@@ -24,9 +20,10 @@ $categories = array('Terror', 'Suspense', 'Fantástico', 'Aventuras', 'Policiaco
                 <div class="form-group mb-4">
                     <label for="gendre">Género</label>
                     <select class="form-control redondo" name="gendre" id="gendre">
-                        <?php foreach ($categories as $category) { ?>
-                            <option><?= $category ?></option>
-                        <?php } ?>
+                        <?php if ($genres !== false) { 
+                            foreach ($genres as $genre) { ?>
+                                <option><?= $genre['name'] ?></option>
+                        <?php }} ?>
                     </select>
                 </div>
                 <div class="custom-file mb-3">

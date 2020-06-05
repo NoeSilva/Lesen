@@ -7,6 +7,8 @@
                 </div>
             <?php } ?>
 
+            <?php if ($genres !== false) { ?>
+
             <table class="table">
                 <thead>
                     <tr class="text-center">
@@ -17,20 +19,20 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <?php foreach ($categories as $category) { ?>
+                    <?php foreach ($genres as $genre) { ?>
                         <tr>
-                            <td><?= $category['id'] ?></td>
-                            <td><?= $category['user_id'] ?></td>
+                            <td><?= $genre['id'] ?></td>
+                            <td><?= $genre['user_id'] ?></td>
                             <td class="text-left">
-                                <?= $category['name'] ?>
+                                <?= $genre['name'] ?>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <div class="btn-group text-light" role="group">
-                                        <a href="index.php?category=show_category&id=<?= $category['id'] ?>" class="btn btn-dark text-light">
+                                        <a href="index.php?genre=show_genre&id=<?= $genre['id'] ?>" class="btn btn-dark text-light">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a href="index.php?category=removeCategory&id=<?= $category['id'] ?>" class="btn btn-danger text-light">
+                                        <a href="index.php?genre=removeGenre&id=<?= $genre['id'] ?>" class="btn btn-danger text-light">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </div>
@@ -40,6 +42,9 @@
                     <?php } ?>
                 </tbody>
             </table>
+            <?php } else { ?> 
+                No hay géneros
+            <?php } ?>
         </div>
     </div>
 </div>

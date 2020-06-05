@@ -2,8 +2,8 @@
     <div class="row justify-content-center">
         <div class="col-3">
             <a href="index.php?book=create_book">
-                <div class="card mt-4">
-                    <img src="./assets/img/createbook.jpg" class="card-img-top img-fluid imagen-panel" alt="...">
+                <div class="card mt-4 redondito-abajo redondito-arriba">
+                    <img src="./assets/img/createbook.jpg" class="card-img-top img-fluid redondito-arriba" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Crear un libro nuevo</h5>
                         <p class="card-text"><small class="text-muted">¡Añade tus libros nuevos!</small></p>
@@ -14,32 +14,32 @@
         </div>
         <div class="col-3">
             <a href="index.php?book=show_books">
-                <div class="card mt-4">
-                    <img src="./assets/img/updatebook.jpg" class="card-img-top imagen-panel" alt="...">
+                <div class="card mt-4 redondito-abajo redondito-arriba">
+                    <img src="./assets/img/updatebook.jpg" class="card-img-top redondito-arriba" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Libros</h5>
-                        <p class="card-text"><small class="text-muted">Pincha aquí</small></p>
+                        <h5 class="card-title">Actualiza un libro</h5>
+                        <p class="card-text"><small class="text-muted">¡Actualiza los datos de un libro!</small></p>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-3">
-            <a href="index.php?category=create_category">
-                <div class="card mt-4">
-                    <img src="./assets/img/categories.jpg" class="card-img-top imagen-panel" alt="...">
+            <a href="index.php?genre=create_genre">
+                <div class="card mt-4 redondito-abajo redondito-arriba">
+                    <img src="./assets/img/creategenre.jpg" class="card-img-top redondito-arriba" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Crear categoría</h5>
-                        <p class="card-text"><small class="text-muted">Pincha aquí</small></p>
+                        <h5 class="card-title">Crea un género</h5>
+                        <p class="card-text"><small class="text-muted">¡Añade un nuevo género!</small></p>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-3">
-            <a href="index.php?category=show_categories">
-                <div class="card mt-4">
-                    <img src="./assets/img/categories.jpg" class="card-img-top imagen-panel" alt="...">
+            <a href="index.php?genre=show_genres">
+                <div class="card mt-4 redondito-abajo redondito-arriba">
+                    <img src="./assets/img/genres.jpg" class="card-img-top redondito-arriba" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Categorías</h5>
+                        <h5 class="card-title">Géneros</h5>
                         <p class="card-text"><small class="text-muted">Pincha aquí</small></p>
                     </div>
                 </div>

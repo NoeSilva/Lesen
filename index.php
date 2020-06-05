@@ -122,34 +122,34 @@ if (isset($_GET['r'])) {
             $controller->loginUser();
             break;
     }
-} else if (isset($_GET['category'])) {
-    require_once './controllers/CategoryController.php';
+} else if (isset($_GET['genre'])) {
+    require_once './controllers/GenreController.php';
 
-    $controller = new CategoryController();
+    $controller = new GenreController();
 
-    $route = $_GET['category'];
+    $route = $_GET['genre'];
 
     switch ($route) {
-        case 'create_category':
+        case 'create_genre':
             require_once './views/templates/header.php';
-            $controller->create_category();
+            $controller->create_genre();
             require_once './views/templates/footer.html';
 
             break;
 
-        case 'show_categories':
+        case 'show_genres':
             require_once './views/templates/header.php';
-            $controller->show_categories();
+            $controller->show_genres();
             require_once './views/templates/footer.html';
 
             break;
 
-        case 'createCategory':
-            $controller->createCategory();
+        case 'createGenre':
+            $controller->createGenre();
             break;
 
-        case 'removeCategory':
-            $controller->removeCategory();
+        case 'removeGenre':
+            $controller->removeGenre();
             break;
     }
 } else {

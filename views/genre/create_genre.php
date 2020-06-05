@@ -8,10 +8,10 @@
                 </div>
             <?php } ?>
 
-            <form action="index.php?category=createCategory" method="POST">
+            <form action="index.php?genre=createGenre" method="POST">
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control redondo" id="name" name="name" placeholder="Nombre de la categoría...">
+                    <input type="text" class="form-control redondo" id="name" name="name" placeholder="Nombre del género...">
                     <button class="btn btn-dark btn-block redondo mt-4" type="submit">Añadir</button>
                 </div>
             </form>
