@@ -32,9 +32,16 @@
                                         <a href="index.php?genre=show_genre&id=<?= $genre['id'] ?>" class="btn btn-dark text-light">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a href="index.php?genre=removeGenre&id=<?= $genre['id'] ?>" class="btn btn-danger text-light">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
+
+                                        <?php if ($_SESSION['user']['id'] == $genre['user_id']) { ?>
+                                            <a href="index.php?genre=removeGenre&id=<?= $genre['id'] ?>" class="btn btn-danger text-light">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        <?php } else { ?>
+                                            <button class="btn btn-danger text-light" disabled>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </td>

@@ -6,7 +6,7 @@ class Book
     public $id;
     public $title;
     public $author;
-    public $gendre;
+    public $gendre_id;
     public $image;
     public $price;
 
@@ -15,10 +15,10 @@ class Book
     }
     
     public function getBooks() {
-        $sql = "SELECT * FROM books";
+        $sql = "SELECT books.id, books.title, books.author, books.image, books.price, genres.name as genre FROM books LEFT JOIN genres ON books.genre_id = genres.id;";
 
         $result = $this->db->query($sql);
-
+  
         if ($result->num_rows > 0) {
             return $result;
         }

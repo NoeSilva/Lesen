@@ -21,7 +21,7 @@ class BookController
             'id' => 0 ,
             'title' => '',
             'author' => '',
-            'gendre' => '',
+            'genre_id' => '',
             'image' => '',
             'price' => 0,
         );
@@ -96,14 +96,14 @@ class BookController
     /********************************************************************************************/
 
     // Meter datos a la clase Book
-    private function insertData($id, $title, $author, $gendre, $image, $price)
+    private function insertData($id, $title, $author, $genre_id, $image, $price)
     {
         $book = new Book();
 
         $book->id = $id;
         $book->title = $title;
         $book->author = $author;
-        $book->gendre = $gendre;
+        $book->genre_id = $genre_id;
         $book->image = $image;
         $book->price = $price;
 
@@ -113,7 +113,7 @@ class BookController
     // Insertar libro a la BD
     public function createBook()
     {
-        $book = $this->insertData(NULL, $_POST['title'], $_POST['author'], $_POST['gendre'], $_FILES["image"]['name'], $_POST['price']);
+        $book = $this->insertData(NULL, $_POST['title'], $_POST['author'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
  
         $result = $book->createBook();
 
@@ -131,7 +131,7 @@ class BookController
 
     public function updateBook()
     {
-        $book = $this->insertData($_POST['id'], $_POST['title'], $_POST['author'], $_POST['gendre'], $_FILES["image"]['name'], $_POST['price']);
+        $book = $this->insertData($_POST['id'], $_POST['title'], $_POST['author'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
  
         $result = $book->updateBook();
 

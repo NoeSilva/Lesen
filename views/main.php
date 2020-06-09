@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="row">
         <?php foreach ($books as $book) { ?>
@@ -23,8 +22,7 @@
                                         <?= $book['author'] ?>
                                     </p>
                                     <p class="card-text"> 
-                                        <?= $book['gendre'] ?>
-                                    </p>
+                                        <?= $book['genre'] ?></p>
                                     <p class="card-text float-right">
                                         <small class="text-muted">
                                             <?= $book['price'] ?> €

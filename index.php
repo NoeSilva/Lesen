@@ -152,6 +152,43 @@ if (isset($_GET['r'])) {
             $controller->removeGenre();
             break;
     }
+} else if (isset($_GET['author'])) {
+    require_once './controllers/AuthorController.php';
+
+    $controller = new AuthorController(); 
+
+    $route = $_GET['author'];
+
+    switch ($route) {
+        case 'create_author':
+            require_once './views/templates/header.php';
+            $controller->create_author();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'show_authors':
+            require_once './views/templates/header.php';
+            $controller->show_authors();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'show_author':
+            require_once './views/templates/header.php';
+            $controller->show_author();
+            require_once './views/templates/footer.html';
+
+            break;
+
+        case 'createAuthor':
+            $controller->createAuthor();
+            break;
+
+        case 'removeAuthor':
+            $controller->removeAuthor();
+            break;
+    }
 } else {
     header('Location: index.php?r=main');
 }

@@ -45,6 +45,28 @@
                 </div>
             </a>
         </div>
+        <div class="col-3">
+            <a href="index.php?author=create_author">
+                <div class="card mt-4 redondito-abajo redondito-arriba">
+                    <img src="./assets/img/createauthor.jpg" class="card-img-top redondito-arriba" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Crea un autor</h5>
+                        <p class="card-text"><small class="text-muted">¡Añade un nuevo autor!</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-3">
+            <a href="index.php?author=show_authors">
+                <div class="card mt-4 redondito-abajo redondito-arriba">
+                    <img src="./assets/img/authors.jpg" class="card-img-top redondito-arriba" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Autores</h5>
+                        <p class="card-text"><small class="text-muted">Pincha aquí</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 

@@ -19,10 +19,10 @@
                 </div>
                 <div class="form-group mb-4">
                     <label for="gendre">Género</label>
-                    <select class="form-control redondo" name="gendre" id="gendre">
+                    <select class="form-control redondo" name="genre_id" id="gendre">
                         <?php if ($genres !== false) { 
                             foreach ($genres as $genre) { ?>
-                                <option><?= $genre['name'] ?></option>
+                                <option value="<?= $genre['id'] ?>"><?= $genre['name'] ?></option>
                         <?php }} ?>
                     </select>
                 </div>
