@@ -7,8 +7,10 @@
     <title>Lesen</title>
     <link rel="icon" type="image/png" href="./assets/img/bookicon.png"/>
 
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="bg-light text-dark"> 
@@ -17,10 +19,10 @@
             <a class="navbar-brand" href="index.php">
                 <img src="./assets/img/bookicon.png" width="30" height="35" alt="">   
             </a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId">
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <?php 
                     foreach ($links as $link) {

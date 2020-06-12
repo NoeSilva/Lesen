@@ -1,0 +1,12 @@
+{
+    "name": "Lesen",
+    "description": "",
+    "authors": [{
+        "name": "Noe",
+        "email": "noeliafonsil@gmail.com"
+    }],
+    "require": {
+        "twbs/bootstrap": "^4.5",
+        "fortawesome/font-awesome": "^5.13"
+    }
+}
