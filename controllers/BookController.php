@@ -1,6 +1,7 @@
 <?php
 require_once './class/Book.php';
 require_once './class/Genre.php';
+require_once './class/Author.php';
 
 require_once './controllers/AuthController.php';
 
@@ -15,26 +16,21 @@ class BookController
         // Comprueba si el usuario está logueado
         AuthController::checkAuth();
 
+        $data = $this->getData();
+
+        $genres = $data['genres'];
+        $authors = $data['authors'];
+
         $type = 'createBook';
 
         $book = array(
             'id' => 0 ,
             'title' => '',
-            'author' => '',
-            'genre_id' => '',
+            'author_id' => 0,
+            'genre_id' => 0,
             'image' => '',
             'price' => 0,
         );
-
-        $genre = new Genre();
-        $result = $genre->getGenres();
-
-        if ($result !== FALSE) {
-            $genres = $result;
-        }
-        else {
-            $genres = [];
-        }
 
         require_once './views/book/create_book.php';
  
@@ -77,6 +73,11 @@ class BookController
         $result = $book->getBook($_GET['id']);
 
         if ($result !== FALSE) {
+            $data = $this->getData();
+
+            $genres = $data['genres'];
+            $authors = $data['authors'];
+            
             $type = 'updateBook';
 
             $book = $result;
@@ -96,13 +97,13 @@ class BookController
     /********************************************************************************************/
 
     // Meter datos a la clase Book
-    private function insertData($id, $title, $author, $genre_id, $image, $price)
+    private function insertData($id, $title, $author_id, $genre_id, $image, $price)
     {
         $book = new Book();
 
         $book->id = $id;
         $book->title = $title;
-        $book->author = $author;
+        $book->author_id = $author_id;
         $book->genre_id = $genre_id;
         $book->image = $image;
         $book->price = $price;
@@ -113,7 +114,7 @@ class BookController
     // Insertar libro a la BD
     public function createBook()
     {
-        $book = $this->insertData(NULL, $_POST['title'], $_POST['author'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
+        $book = $this->insertData(NULL, $_POST['title'], $_POST['author_id'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
  
         $result = $book->createBook();
 
@@ -131,7 +132,7 @@ class BookController
 
     public function updateBook()
     {
-        $book = $this->insertData($_POST['id'], $_POST['title'], $_POST['author'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
+        $book = $this->insertData($_POST['id'], $_POST['title'], $_POST['author_id'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
  
         $result = $book->updateBook();
 
@@ -160,5 +161,30 @@ class BookController
         }
 
         header('Location: index.php?book=show_books');
+    }
+
+    private function getData() {
+        $genre = new Genre();
+        $gResult = $genre->getGenres();
+
+        $genres = [];
+
+        if ($gResult !== FALSE) {
+            $genres = $gResult;
+        }
+
+        $author = new Author();
+        $aResult = $author->getAuthors();
+
+        $authors = [];
+
+        if ($aResult !== FALSE) {
+            $authors = $aResult;
+        }
+
+        return array(
+            'genres' => $genres,
+            'authors' => $authors,
+        );
     }
 }

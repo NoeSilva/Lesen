@@ -19,7 +19,7 @@
                                         <?= $book['title'] ?>
                                     </h5>
                                     <p class="card-text"> 
-                                        <?= $book['author'] ?>
+                                        <?= $book['authorName'] ?> <?= $book['authorSurname'] ?>
                                     </p>
                                     <p class="card-text"> 
                                         <?= $book['genre'] ?></p>

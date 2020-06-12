@@ -8,7 +8,7 @@ if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
     $links = array(
         array('name' => 'Inicio', 'url' => 'r=main', 'icon' => 'fas fa-home'),
         array('name' => 'Panel', 'url' => 'auth=panel', 'icon' => 'fas fa-user'),
-        array('name' => 'Cerrar sesión', 'url' => 'r=logout', 'icon' => 'fas fa-sign-out-alt'),
+        array('name' => 'Cerrar sesión', 'url' => 'auth=logout', 'icon' => 'fas fa-sign-out-alt'),
     );
 }
 //El usuario NO está logueado
@@ -33,10 +33,6 @@ if (isset($_GET['r'])) {
             $controller->main();
             require_once './views/templates/footer.html';
 
-            break;
-
-        case 'logout':
-            $controller->logout();
             break;
     }
 } else if (isset($_GET['book'])) {
@@ -122,6 +118,10 @@ if (isset($_GET['r'])) {
 
         case 'loginUser':
             $controller->loginUser();
+            break;
+            
+        case 'logout':
+            $controller->logout();
             break;
     }
 } else if (isset($_GET['genre'])) {

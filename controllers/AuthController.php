@@ -94,4 +94,12 @@ class AuthController
             header('Location: index.php?auth=login');
         }
     }
+
+    //Vaciamos las variables $auth y $user, redirigimos a login
+    public function logout(){
+        unset($_SESSION['auth']);
+        unset($_SESSION['user']);
+
+        header('Location: index.php?auth=login');
+    }
 }

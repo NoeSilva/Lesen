@@ -9,14 +9,6 @@ class Controller {
 
         require_once './views/main.php';
     }
-
-    //Vaciamos las variables $auth y $user, redirigimos a login
-    public function logout(){
-        unset($_SESSION['auth']);
-        unset($_SESSION['user']);
-
-        header('Location: index.php?auth=login');
-    }
 }
 
 ?>

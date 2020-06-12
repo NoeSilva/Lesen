@@ -13,9 +13,17 @@
                     <label for="title">Título del libro</label>
                     <input type="text" class="form-control redondo" id="title" name="title" placeholder="Introduce el título..." value="<?= $book['title'] ?>">
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-4">
                     <label for="author">Autor/a</label>
-                    <input type="text" class="form-control redondo" id="author" name="author" placeholder="Introduce el autor..." value="<?= $book['author'] ?>">
+                    <select class="form-control redondo" name="author_id" id="author">
+                        <?php if ($authors !== false) { 
+                            foreach ($authors as $author) { ?>
+                                <option value="<?= $author['id'] ?>">
+                                <?= $author['name'] ?>
+                                <?= $author['surname'] ?>
+                            </option>
+                        <?php }} ?>
+                    </select>
                 </div>
                 <div class="form-group mb-4">
                     <label for="gendre">Género</label>

@@ -21,7 +21,7 @@
                     <?php foreach ($books as $book) { ?>
                         <tr>
                             <td><?= $book['id'] ?></td>
-                            <td><?= $book['user_id'] ?></td>
+                            <td><?= $book['user'] ?></td>
                             <td class="text-left">
                                 <?= $book['title'] ?>
                             </td>
