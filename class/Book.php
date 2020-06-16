@@ -28,13 +28,37 @@ class Book
     }
 
     public function getBook($id) {
-        $sql = "SELECT books.id, books.title, books.author_id, books.image, books.price, genres.name as genre, authors.name as authorName, authors.surname as authorSurname , users.name as user FROM books WHERE id='$id' ";
-        $sql .= "LEFT JOIN genres ON books.genre_id = genres.id LEFT JOIN authors ON books.author_id = authors.id LEFT JOIN users ON books.user_id = users.id;";
+        $sql = "SELECT books.id, books.title, books.author_id, books.image, books.price, genres.name as genre, authors.name as authorName, authors.surname as authorSurname , users.name as user FROM books ";
+        $sql .= "LEFT JOIN genres ON books.genre_id = genres.id LEFT JOIN authors ON books.author_id = authors.id LEFT JOIN users ON books.user_id = users.id WHERE books.id=$id;";
 
         $result = $this->db->query($sql);
 
         if ($result->num_rows > 0) {
             return $result->fetch_assoc();
+        }
+        
+        return false;
+    }
+
+    public function getAuthorBooks($author_id) {
+        $sql = "SELECT * FROM books WHERE author_id=$author_id LIMIT 3;";
+
+        $result = $this->db->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result;
+        }
+        
+        return false;
+    }
+
+    public function getAllAuthorBooks($author_id) {
+        $sql = "SELECT id FROM books WHERE author_id=$author_id;";
+
+        $result = $this->db->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result;
         }
         
         return false;

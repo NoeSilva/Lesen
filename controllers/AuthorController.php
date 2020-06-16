@@ -2,8 +2,10 @@
 require_once './class/Author.php';
 
 require_once './controllers/AuthController.php';
+require_once './controllers/BookController.php';
 
-class AuthorController {
+class AuthorController
+{
 
     /********************************************************************************************/
     /*                                         PAGINAS                                          */
@@ -14,7 +16,7 @@ class AuthorController {
         AuthController::checkAuth();
 
         require_once './views/author/create_author.php';
- 
+
         unset($_SESSION['class']);
         unset($_SESSION['message']);
     }
@@ -25,24 +27,38 @@ class AuthorController {
 
         $author = new Author();
         $authors = $author->getAuthors();
-        
+
         require_once './views/author/show_authors.php';
 
         unset($_SESSION['class']);
         unset($_SESSION['message']);
     }
 
-    public function show_author() {
+    public function show_author()
+    {
 
         $author = new Author();
-        $result = $author->getAuthor($_GET['id']);
+        $authorResult = $author->getAuthor($_GET['id']);
 
-        if ($result !== FALSE) {
-           $author = $result; 
+        if ($authorResult !== FALSE) {
+            $author = $authorResult;
 
-           $date = new DateTime($author['birthday']);
-           $author['birthday'] = $date->format('F j, Y');
-         
+            $date = new DateTime($author['birthday']);
+            $author['birthday'] = $date->format('F j, Y');
+
+            $book = new Book();
+
+            $booksResult = $book->getAuthorBooks($_GET['id']);
+            
+            if ($booksResult !== FALSE) {
+                $books = $booksResult;
+
+                $booksQuantity = $book->getAllAuthorBooks($_GET['id'])->num_rows;
+            } else {
+                $books = [];
+
+                $booksQuantity = 0;
+            }
         } else {
             header('Location:index.php?r=main');
         }
@@ -62,7 +78,7 @@ class AuthorController {
         $author->surname = $_POST['surname'];
         $author->birthday = $_POST['birthday'];
         $author->url = $_POST['url'];
- 
+
         $result = $author->createAuthor();
 
         if ($result !== FALSE) {
@@ -90,7 +106,6 @@ class AuthorController {
         } else {
             header('Location:index.php?r=main');
         }
-
     }
     public function removeAuthor()
     {
@@ -107,8 +122,4 @@ class AuthorController {
 
         header('Location: index.php?genre=show_authors');
     }
-   
-
-    
-
 }

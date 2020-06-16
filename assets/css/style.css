@@ -80,3 +80,16 @@ a:hover {
     text-decoration: none;
     color: #000;
 }
+
+h1 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 20px;
+}

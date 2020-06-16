@@ -10,7 +10,7 @@ class BookController
     /********************************************************************************************/
     /*                                         PAGINAS                                          */
     /********************************************************************************************/
-    
+
     public function create_book()
     {
         // Comprueba si el usuario está logueado
@@ -24,7 +24,7 @@ class BookController
         $type = 'createBook';
 
         $book = array(
-            'id' => 0 ,
+            'id' => 0,
             'title' => '',
             'author_id' => 0,
             'genre_id' => 0,
@@ -33,13 +33,14 @@ class BookController
         );
 
         require_once './views/book/create_book.php';
- 
+
         unset($_SESSION['class']);
         unset($_SESSION['message']);
         unset($_SESSION['bookId']);
     }
 
-    public function show_book(){
+    public function show_book()
+    {
         $book = new Book();
         $result = $book->getBook($_GET['id']);
 
@@ -52,8 +53,9 @@ class BookController
         require_once './views/book/show_book.php';
     }
 
-    public function show_books(){ 
-       
+    public function show_books()
+    {
+
         AuthController::checkAuth();
 
         $book = new Book();
@@ -77,7 +79,7 @@ class BookController
 
             $genres = $data['genres'];
             $authors = $data['authors'];
-            
+
             $type = 'updateBook';
 
             $book = $result;
@@ -86,7 +88,7 @@ class BookController
         }
 
         require_once './views/book/create_book.php';
- 
+
         unset($_SESSION['class']);
         unset($_SESSION['message']);
         unset($_SESSION['bookId']);
@@ -114,9 +116,20 @@ class BookController
     // Insertar libro a la BD
     public function createBook()
     {
-        $book = $this->insertData(NULL, $_POST['title'], $_POST['author_id'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
- 
-        $result = $book->createBook();
+        // Meter el nombre de la imagen a la BD
+        $book = $this->insertData(NULL, $_POST['title'], $_POST['author_id'], $_POST['genre_id'], $_FILES['image']['name'], $_POST['price']);
+
+        $result = false;
+
+        // Subir imagen al servidor
+        if ($_FILES['image']['name'] && $this->uploadPhoto($_FILES['image']) == true) {
+
+            $result = $book->createBook();
+
+        } else if (!$_FILES['image']['name']) {
+
+            $result = $book->createBook();
+        }
 
         if ($result !== FALSE) {
             $_SESSION['bookId'] = $result['id'];
@@ -132,8 +145,8 @@ class BookController
 
     public function updateBook()
     {
-        $book = $this->insertData($_POST['id'], $_POST['title'], $_POST['author_id'], $_POST['genre_id'], $_FILES["image"]['name'], $_POST['price']);
- 
+        $book = $this->insertData($_POST['id'], $_POST['title'], $_POST['author_id'], $_POST['genre_id'], $_FILES['image']['name'], $_POST['price']);
+
         $result = $book->updateBook();
 
         if ($result !== FALSE) {
@@ -144,7 +157,7 @@ class BookController
             $_SESSION['message'] = 'El libro no se ha actualizado';
         }
 
-        header('Location: index.php?book=update_book&id='. $_POST['id']);
+        header('Location: index.php?book=update_book&id=' . $_POST['id']);
     }
 
     public function removeBook()
@@ -163,7 +176,8 @@ class BookController
         header('Location: index.php?book=show_books');
     }
 
-    private function getData() {
+    private function getData()
+    {
         $genre = new Genre();
         $gResult = $genre->getGenres();
 
@@ -186,5 +200,38 @@ class BookController
             'genres' => $genres,
             'authors' => $authors,
         );
+    }
+
+    // Subir imagen al servidor
+    private function uploadPhoto($image)
+    {
+        $directory = 'storage/images/';
+        $file = $directory . basename($image['name']);
+
+        // Comprobar que la imagen sea una imagen
+        if (getimagesize($image['tmp_name']) == true) {
+
+            // Comprobar que la imagen no exista
+            if (!file_exists($file)) {
+
+                // Comprobar que la imagen pese menos de 5MB
+                if ($image['size'] <= 500000) {
+                    
+                    $imageFileType = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+                    // Si la imagen tiene alguno de estos formatos
+                    if ($imageFileType == 'jpg' || $imageFileType == 'png' || $imageFileType == 'jpeg' || $imageFileType == 'gif') {
+
+                        // Si la imagen se ha subido
+                        if (move_uploaded_file($image['tmp_name'], $file)) {
+                            return true;
+                        }
+
+                    }
+
+                    return false;
+                }
+            }
+        }
     }
 }

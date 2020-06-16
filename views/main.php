@@ -10,7 +10,7 @@
                         <div class="row">
                             <!-- Columna de la imagen -->
                             <div class="col-lg-4 col-sm-12">
-                                <img src='./assets/img/<?=$book['image']?>' style='max-height: 185px;' alt='<?=$book['image']?>'>
+                                <img src='./storage/images/<?=$book['image']?>' style='max-height: 185px;' alt='<?=$book['image']?>'>
                             </div>
                             <!-- Columna del texto -->
                             <div class="col-lg-8 col-sm-12">

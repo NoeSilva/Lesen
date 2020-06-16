@@ -53,7 +53,7 @@
             </form>
 
             <?php if (isset($_SESSION['bookId'])) { ?>
-                <a type="button" class="btn btn-dark redondo mt-4" href="index.php?book=show_book&id=<?=$_SESSION['bookId']?>">Ver libro</a>
+                <a type="button" class="btn btn-dark redondo mt-4 text-light" href="index.php?book=show_book&id=<?=$_SESSION['bookId']?>">Ver libro</a>
             <?php } ?>
         </div>
     </div>
